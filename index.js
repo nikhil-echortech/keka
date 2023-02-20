@@ -47,7 +47,7 @@ let task = (val) => cron.schedule(val, async function () {
     })
 });
 task('0 30 9 * * *')
-task('0 11 22 * * *')
+task('0 30 18 * * *')
 
 
 // function ready() {
