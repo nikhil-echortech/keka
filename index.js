@@ -40,8 +40,6 @@ let task = (val) => cron.schedule(val, async function () {
             body: 'Body of your push notgbfnification'
         },
     }
-
-
     fcm.send(message, function (err, response) {
         if (err) {
             console.log(err, "Something has gone wrong!")
