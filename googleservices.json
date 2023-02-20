@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "136714806941",
+    "project_id": "keka-9cc41",
+    "storage_bucket": "keka-9cc41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136714806941:android:916b976351cde3391c9674",
+        "android_client_info": {
+          "package_name": "com.keka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136714806941-7l47rrrn561k7rrhrv9e9jirt1hb8eun.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5UkTds-5UYtbzT57YMVN8ynZdN6fMnls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136714806941-7l47rrrn561k7rrhrv9e9jirt1hb8eun.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "136714806941-j0b3nnuf8fuuh1uct1ogl7nreeiles8k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.keka"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
