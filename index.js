@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/id', require('./id'))
 
 mongoose.set('strictQuery', true)
-mongoose.connect('mongodb+srv://reddygangulanikhil:8CwPbxllhzsGxAQr@cluster0.oxapviy.mongodb.net/?retryWrites=true&w=majority', (err) => {
+mongoose.connect('mongodb+srv://nikhil:nikhil@cluster0.ey4cw2x.mongodb.net/?retryWrites=true&w=majority', (err) => {
     if (err) {
         return console.log(err, 'connection failed')
     }
