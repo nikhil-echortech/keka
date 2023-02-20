@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const ID = require('./idSchema')
 const FCM = require('fcm-node')
+const moment = require('moment')
+let body = ''
 
 var fcm = new FCM('AAAAH9TWZp0:APA91bG5HmgsHk9pdtI9CbWec8vRdL_AvGDnMwzjeGRIJr6qle2nVdK7-M7MZ8Vyc5L8tltS1sPUHVhiMoMxnTWy6RWMz1FkC0IVvd2veE_ytO9rPniqv_h09RnvEhYrKQA91liCgkJB')
 router.post('/', async (req, res) => {
@@ -35,14 +37,26 @@ router.get('/', async (req, res) => {
 
 router.post('/run', async () => {
     try {
-        var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-            registration_ids: ['cCJ4vwVeT6Ww3uUtcZ1fue:APA91bHHAAZNCFQXUgCmEE0y9iDmmJmulfOVjEgZjuOW1j8HsLCCsYgCbrPcxN_UbDU9wRxAHGyHfGJUQAepXGQUD9hoPoCOvUeyq4drYMwbDJ8E9tcxlD1svcjPN92pdN-CHVBcGVfR',
-                'dXAWn36gSROw9AdaxQV11C:APA91bG5rvki0HKaniJeYc7dYfkDqaIg406v-BodubAFGCZHm0GF4b-nPLFSD5-Yk9LMyxuAbW0UwTszGBntzjoeFYrLWGonz8dBvIETxvZQAJJ4qr5IF6--TYoIR7XzsN2z7OfUDlI8'
-            ],
+        let result = await ID.find({}, { id: 1, _id: 0 })
+        if (!result.length) {
+            return
+        }
+        result = result.map(val => val?.id)
+        var now = new Date();
+        var hour = now.getHours();
+        var minutes = now.getMinutes();
+        if (hour == 09 && minutes == 30) {
+            body = 'Please clock-in '
+        }
+        if (hour == 18 && minutes == 30) {
+            body = 'Please clock-out'
+        }
+        var message = {
+            registration_ids: result,
             colapse_key: 'com.keka',
             notification: {
-                title: 'Title of your push nvbotification',
-                body: 'Body of your push notgbfnification'
+                title: 'KEKA ATTENDANCE NOTIFICATION',
+                body: body
             },
         }
         fcm.send(message, function (err, response) {
