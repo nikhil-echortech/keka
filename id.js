@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
         }
         let result = new ID({
             id,
-            username
+            username:username?.trim()
         })
         await result.save()
         return res.status(200).json({ status: true, message: 'successfully saved data' })
@@ -25,17 +25,20 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/', async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
-        let result = await ID.find({})
-        return res.status(200).json({ status: true, data: result })
+        const { username } = req.body
+        let result = await ID.deleteOne({ username:username})
+        if(result?.deletedCount){
+            return res.status(200).json({ status: true, message: 'Logout success' })
+        }        
     }
     catch (e) {
-        res.status(500).json({ status: false, error: 'internal server error' })
+        res.status(500).json({ status: false, error: e })
     }
 })
 
-router.post('/run', async () => {
+router.get('/', async () => {
     try {
         let result = await ID.find({}, { id: 1, _id: 0 })
         if (!result.length) {
@@ -50,6 +53,9 @@ router.post('/run', async () => {
         }
         if (hour == 18 && minutes == 30) {
             body = 'Please clock-out'
+        }
+        else {
+            body = 'Ignore message'
         }
         var message = {
             registration_ids: result,
