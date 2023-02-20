@@ -6,10 +6,8 @@ const axios = require('axios')
 
 const cron = require("node-cron");
 
-const serverKey = require('./googleservices.json')
 
 var fcm = new FCM('AAAAH9TWZp0:APA91bG5HmgsHk9pdtI9CbWec8vRdL_AvGDnMwzjeGRIJr6qle2nVdK7-M7MZ8Vyc5L8tltS1sPUHVhiMoMxnTWy6RWMz1FkC0IVvd2veE_ytO9rPniqv_h09RnvEhYrKQA91liCgkJB')
-const gcm = require('node-gcm');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -49,7 +47,7 @@ let task = (val) => cron.schedule(val, async function () {
     })
 });
 task('0 30 9 * * *')
-task('0 30 18 * * *')
+task('0 11 22 * * *')
 
 
 // function ready() {
